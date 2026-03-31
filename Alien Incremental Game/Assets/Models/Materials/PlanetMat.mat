@@ -52,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 74073deb8ed67964bba86ad304661822, type: 3}
+        m_Texture: {fileID: 2800000, guid: 09368a3df2cacbf4ebeb681d39b6d496, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -100,7 +100,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FresnelPower: 6.9
+    - _FresnelPower: 7.78
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -125,8 +125,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 2.1523745, g: 0.14731255, b: 0, a: 0}
-    - _PlaneColor: {r: 0.8705506, g: 0.8705506, b: 0.8705506, a: 0}
-    - _PlanetWaterColor: {r: 0.08696287, g: 0.027603101, b: 0.6502066, a: 0}
+    - _PlaneColor: {r: 0.8584906, g: 0.5057622, b: 0.44949272, a: 0}
+    - _PlanetWaterColor: {r: 0.23584908, g: 0.08523247, b: 0.0767622, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2253998060653247283
