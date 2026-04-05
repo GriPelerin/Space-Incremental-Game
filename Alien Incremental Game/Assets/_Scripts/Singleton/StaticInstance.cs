@@ -9,7 +9,7 @@ public class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
     {
         Instance = this as T;
     }
-    protected virtual void onapplicationQuit()
+    protected virtual void OnapplicationQuit()
     {
         Instance = null;
         Destroy(gameObject);

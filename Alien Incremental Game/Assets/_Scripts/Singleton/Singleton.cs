@@ -9,6 +9,7 @@ public class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
         if (Instance != null)
         {
             Destroy(gameObject);
+            return;
         }
         base.Awake();
     }

@@ -110,11 +110,11 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Star_Blinking_Speed: 0.000005
-    - _Star_Density: 379
+    - _Star_Blinking_Speed: 0.00007
+    - _Star_Density: 35
     - _Star_Edge: -3.02
     - _Star_Power: 720
-    - _Star_Scale: 200
+    - _Star_Scale: 2558
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -124,7 +124,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Star_Color: {r: 24.345098, g: 47.30135, b: 47.937256, a: 0}
+    - _Star_Color: {r: 16.600925, g: 30.330345, b: 40.452827, a: 0}
     - _TopColor: {r: 0.16981131, g: 0.13985403, b: 0.12896048, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7429389586527639695

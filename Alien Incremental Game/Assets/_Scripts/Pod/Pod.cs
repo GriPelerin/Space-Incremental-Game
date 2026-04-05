@@ -8,7 +8,7 @@ public class Pod : MonoBehaviour
     [BoxGroup("Capacity")]
     [ShowInInspector]
     [GUIColor("RGB(0, 1, 0)")]
-    private int _requiredSupplies = 5;
+    private int _requiredSupplies;
     [BoxGroup("Capacity")]
     [ShowInInspector]
     [ReadOnly]
