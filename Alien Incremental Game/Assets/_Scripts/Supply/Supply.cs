@@ -1,11 +1,6 @@
-using Sirenix.OdinInspector;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
-public class Supply : SerializedMonoBehaviour, IInteractable, ICollectible
+public class Supply : MonoBehaviour, IInteractable, ICollectible, IPooledObject
 {
     public string InteractableName => "";
 
@@ -26,8 +21,6 @@ public class Supply : SerializedMonoBehaviour, IInteractable, ICollectible
     private void MoveTowardsTarget()
     {
         transform.position = Vector3.MoveTowards(transform.position, _moveTo.position, 10f * Time.deltaTime);
-        _rb.useGravity = false;
-        _rb.isKinematic = true;
         if (Vector3.Distance(transform.position, _moveTo.position) < 0.2f)
         {
             _isCollecting = false;
@@ -45,5 +38,9 @@ public class Supply : SerializedMonoBehaviour, IInteractable, ICollectible
     }
     public void Interact()
     {
+    }
+    public void OnObjectSpawn()
+    {
+        _rb.isKinematic = true;
     }
 }

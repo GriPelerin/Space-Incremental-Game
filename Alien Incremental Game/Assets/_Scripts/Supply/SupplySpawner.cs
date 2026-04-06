@@ -10,6 +10,7 @@ public class SupplySpawner : MonoBehaviour
     [SerializeField] private VisualEffect visualEffect;
     [SerializeField] private GameObject supplyPrefab;
 
+    private ObjectPooler _objectPooler;
     private float _spawnInterval;
 
     private void Awake()
@@ -19,13 +20,13 @@ public class SupplySpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnSupplyWithDelay());
+        _objectPooler = ObjectPooler.Instance;
     }
     private IEnumerator SpawnSupplyWithDelay()
     {
         visualEffect.Play();
         yield return new WaitForSeconds(_spawnInterval);
-        GameObject obj = Instantiate(supplyPrefab, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        GameObject obj = _objectPooler.SpawnFromPool("Supply", transform.position, Quaternion.identity);
         obj.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 1);
-        obj.GetComponent<Rigidbody>().isKinematic = true;
     }
 }
