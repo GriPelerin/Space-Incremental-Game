@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface ICollectible
 {
-    void Collect(Transform moveTo);
+    void Collect(Vector3 targetPosition);
 }

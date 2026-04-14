@@ -8,47 +8,54 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private LayerMask collectibleMask;
     [SerializeField] private float rayLength = 5f;
+    [SerializeField] private GameObject supplyProjectilePrefab;
 
-    [ShowInInspector]
-    private List<Supply> _supplies = new List<Supply>();
     private InputManager _input;
 
     private void Awake()
     {
         _input = GetComponentInParent<InputManager>();
     }
+    private void OnEnable()
+    {
+        Supply.OnSupplyCollected += AddSupply;
+    }
+    private void OnDisable()
+    {
+        Supply.OnSupplyCollected -= AddSupply;
+    }
     private void Update()
     {
         if (_input.RightMouseInput)
         {
-            CollectRay();
+            CollectSupply();
         }
         if(_input.LeftMouseInput)
         {
-            ShootRay();
+            ShootSupply();
         }
 
     }
-    private void CollectRay()
+    private void CollectSupply()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * rayLength, Color.magenta);
+        Debug.DrawRay(Helpers.Camera.transform.position, Helpers.Camera.transform.forward * rayLength, Color.magenta);
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit2, rayLength, collectibleMask))
+        if (Physics.Raycast(Helpers.Camera.transform.position, Helpers.Camera.transform.forward, out RaycastHit hit2, rayLength, collectibleMask))
         {
             Debug.Log("Ray hit: " + hit2.collider.name);
             if (hit2.collider.TryGetComponent(out ICollectible collectible))
             {
-                collectible.Collect(shootPoint);
+                collectible.Collect(shootPoint.position);
             }
         }
     }
-    private void ShootRay()
+    private void ShootSupply()
     {
-
+        GameObject go = Instantiate(supplyProjectilePrefab, shootPoint.position, Quaternion.identity);
+        go.GetComponent<Rigidbody>().velocity = shootPoint.forward * 10f;
     }
     public void AddSupply(Supply supply)
     {
-        _supplies.Add(supply);
-        Debug.Log("Supply added. Count: " + _supplies.Count);
+
     }
 }

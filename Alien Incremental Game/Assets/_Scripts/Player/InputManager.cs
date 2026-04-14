@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
         InteractInput = Input.GetKeyDown(KeyCode.E);
 
         LeftMouseInput = Input.GetKeyDown(KeyCode.Mouse0);
-        RightMouseInput = Input.GetKey(KeyCode.Mouse1);
+        RightMouseInput = Input.GetKeyDown(KeyCode.Mouse1);
 
     }
 }
