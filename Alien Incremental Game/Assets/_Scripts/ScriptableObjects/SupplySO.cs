@@ -5,7 +5,7 @@ using UnityEngine;
 public class SupplySO : ScriptableObject
 {
     [PreviewField(50)]
-    public Sprite supplyIcon;
+    public GameObject supplyPrefab;
     [VerticalGroup("Supply Info")]
     [EnumToggleButtons]
     public SupplyType supplyType;

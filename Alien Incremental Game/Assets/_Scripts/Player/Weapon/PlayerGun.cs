@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerGun : MonoBehaviour
 {
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private ParticleSystem vacuumEffect;
     [SerializeField] private LayerMask collectibleMask;
     [SerializeField] private float rayLength = 5f;
     [SerializeField] private GameObject supplyProjectilePrefab;
@@ -16,21 +17,17 @@ public class PlayerGun : MonoBehaviour
     {
         _input = GetComponentInParent<InputManager>();
     }
-    private void OnEnable()
-    {
-        Supply.OnSupplyCollected += AddSupply;
-    }
-    private void OnDisable()
-    {
-        Supply.OnSupplyCollected -= AddSupply;
-    }
     private void Update()
     {
         if (_input.RightMouseInput)
         {
             CollectSupply();
         }
-        if(_input.LeftMouseInput)
+        else
+        {
+            vacuumEffect.Stop();
+        }
+        if (_input.LeftMouseInput)
         {
             ShootSupply();
         }
@@ -45,6 +42,7 @@ public class PlayerGun : MonoBehaviour
             Debug.Log("Ray hit: " + hit2.collider.name);
             if (hit2.collider.TryGetComponent(out ICollectible collectible))
             {
+                vacuumEffect.Play();
                 collectible.Collect(shootPoint.position);
             }
         }
@@ -53,9 +51,5 @@ public class PlayerGun : MonoBehaviour
     {
         GameObject go = Instantiate(supplyProjectilePrefab, shootPoint.position, Quaternion.identity);
         go.GetComponent<Rigidbody>().velocity = shootPoint.forward * 10f;
-    }
-    public void AddSupply(Supply supply)
-    {
-
     }
 }
