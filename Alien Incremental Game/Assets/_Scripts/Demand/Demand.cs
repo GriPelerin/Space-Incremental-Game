@@ -24,6 +24,8 @@ public class Demand
 
         this.demandDuration = demandSO.duration;
         this.rewardAmount = demandSO.baseRewardAmount;
+
+        this.requiredSupplyAmount = demandSO.baseSupplyDemandAmount;
         this.currentSupplyAmount = 0;
     }
 }

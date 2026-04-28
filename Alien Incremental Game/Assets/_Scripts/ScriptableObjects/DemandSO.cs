@@ -12,8 +12,11 @@ public class DemandSO : ScriptableObject
     public string demandDescription;
 
     [EnumToggleButtons]
+    [GUIColor(1, 0f, 0f)]
     public SupplyType supplyType;
-
+    [EnumToggleButtons]
+    [GUIColor(1f, 1f, 0f)]
+    public CurrencyType currencyType;
     public int baseSupplyDemandAmount;
     public int baseRewardAmount;
 

@@ -23,11 +23,11 @@ public class SupplySpawner : MonoBehaviour
     }
     private void OnEnable()
     {
-        Supply.OnSupplyCollected += RespawnSupply;
+        EventManager<Supply>.Subscribe(EventType.OnSupplyCollected, RespawnSupply);
     }
     private void OnDisable()
     {
-        Supply.OnSupplyCollected -= RespawnSupply;
+        EventManager<Supply>.Unsubscribe(EventType.OnSupplyCollected, RespawnSupply);
     }
     private IEnumerator SpawnSupplyWithDelay()
     {

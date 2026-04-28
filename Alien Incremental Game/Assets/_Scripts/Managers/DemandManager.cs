@@ -1,22 +1,25 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class DemandManager : MonoBehaviour
 {
-    [SerializeField] private List<DemandSO> availableDemands;
-    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private List<DemandSO> availableDemandTypes;
+    [SerializeField] private float spawnInterval = 20f;
 
+    [ShowInInspector]
     private List<Demand> _activeDemands = new List<Demand>();
 
-    private float timer;
+    private float _timer;
     private void Update()
     {
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-        if (timer >= spawnInterval)
+        if (_timer >= spawnInterval)
         {
-            timer = 0f;
+            _timer = 0f;
             SpawnDemand();
         }
         UpdateDemand();
@@ -24,9 +27,9 @@ public class DemandManager : MonoBehaviour
     }
     private void SpawnDemand()
     {
-        var data = availableDemands[Random.Range(0, availableDemands.Count)];
+        var data = availableDemandTypes[Random.Range(0, availableDemandTypes.Count)];
         var demand = new Demand(data);
-
+        EventManager<Demand>.TriggerEvent(EventType.OnDemandCreated, demand);
         _activeDemands.Add(demand);
     }
     private void UpdateDemand()
@@ -37,25 +40,24 @@ public class DemandManager : MonoBehaviour
 
             d.demandDuration -= Time.deltaTime;
 
-            if (d.IsCompleted)
+            if (d.demandDuration <= 0)
             {
-                CompleteDemand(d);
-                _activeDemands.RemoveAt(i);
-            }
-            else if (d.demandDuration <= 0)
-            {
-                Debug.Log("Demand Failed");
-                _activeDemands.RemoveAt(i);
+                RemoveDemand(i);
             }
         }
     }
-    private void CompleteDemand(Demand demand)
+    private void RemoveDemand(int index)
     {
-
+        var demand = _activeDemands[index];
+        _activeDemands.RemoveAt(index);
+        EventManager<Demand>.TriggerEvent(EventType.OnDemandExpired, demand);
     }
-
-    private void UnlockDemand()
+    //Skill tree unlocks new demand types;
+    private void UnlockNewDemandType(DemandSO demandSO)
     {
-
+        if(!availableDemandTypes.Contains(demandSO))
+        {
+            availableDemandTypes.Add(demandSO);
+        }
     }
 }

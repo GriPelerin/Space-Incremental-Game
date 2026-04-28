@@ -9,7 +9,6 @@ public class SupplySO : ScriptableObject
     [VerticalGroup("Supply Info")]
     [EnumToggleButtons]
     public SupplyType supplyType;
-    public int coinValue;
     public string supplyName;
 }
 public enum SupplyType

@@ -4,10 +4,10 @@ using UnityEngine;
 using System;
 public enum EventType
 {
-    DemandCompleted,
-    DemandUpdated,
-    DemandFailed,
-    DemandUnlocked
+    OnSupplyCollected,
+    OnDemandCreated,
+    OnDemandCompleted,
+    OnDemandExpired,
 }
 public static class EventManager<TEventArgs>
 {
@@ -27,14 +27,31 @@ public static class EventManager<TEventArgs>
 
     public static void Unsubscribe(EventType eventType, Action<TEventArgs> listener)
     {
-        if(_eventDictionary[eventType] != null)
+        if (_eventDictionary.TryGetValue(eventType, out var existingListeners))
         {
-            _eventDictionary[eventType] -= listener;
+            existingListeners -= listener;
+
+            if (existingListeners == null)
+            {
+                _eventDictionary.Remove(eventType);
+            }
+            else
+            {
+                _eventDictionary[eventType] = existingListeners;
+            }
         }
-        if (_eventDictionary[eventType] == null)
-        {
-            _eventDictionary.Remove(eventType);
-        }
+
+
+        //Alternative unsubscribe method:
+
+        //if (_eventDictionary[eventType] != null)
+        //{
+        //    _eventDictionary[eventType] -= listener;
+        //}
+        //if (_eventDictionary[eventType] == null)
+        //{
+        //    _eventDictionary.Remove(eventType);
+        //}
     }
 
     public static void TriggerEvent(EventType eventType, TEventArgs eventArgs)

@@ -9,7 +9,7 @@ public class Supply : MonoBehaviour, IInteractable, ICollectible
     [AssetsOnly]
     [SerializeField] private SupplySO supplyData;
 
-    public static Action<Supply> OnSupplyCollected;
+    public SupplySO SupplyData => supplyData;
     public string InteractableName => "Supply";
 
     private Rigidbody _rb;
@@ -49,7 +49,7 @@ public class Supply : MonoBehaviour, IInteractable, ICollectible
     }
     private void CompleteCollect()
     {
-        OnSupplyCollected?.Invoke(this);
+        EventManager<Supply>.TriggerEvent(EventType.OnSupplyCollected, this);
 
         _isCollecting = false;
 

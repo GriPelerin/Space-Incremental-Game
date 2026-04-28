@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d57adba4f1bcee4a97aedf188579236, type: 3}
   m_Name: New Demand
   m_EditorClassIdentifier: 
-  demanderIcon: {fileID: 0}
+  demanderIcon: {fileID: 21300000, guid: 59ad88214c7ee9140b7dc29726c29001, type: 3}
   demanderName: Mairo
   demandDescription: 'We need 20 Food Supply! '
   supplyType: 0
+  currencyType: 0
   baseSupplyDemandAmount: 20
   baseRewardAmount: 100
-  duration: 10
+  duration: 25
