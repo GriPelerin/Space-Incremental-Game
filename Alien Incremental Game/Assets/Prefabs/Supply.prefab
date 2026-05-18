@@ -147,3 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supplyData: {fileID: 11400000, guid: 141712264a9b351469b5c120f63376fb, type: 2}
+  collectSpeed: 15

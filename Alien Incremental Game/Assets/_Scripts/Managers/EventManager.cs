@@ -5,9 +5,11 @@ using System;
 public enum EventType
 {
     OnSupplyCollected,
+    OnSupplyAdded,
     OnDemandCreated,
     OnDemandCompleted,
     OnDemandExpired,
+    OnDemandUpdated
 }
 public static class EventManager<TEventArgs>
 {

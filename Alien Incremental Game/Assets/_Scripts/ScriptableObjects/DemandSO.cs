@@ -8,15 +8,20 @@ public class DemandSO : ScriptableObject
     [PreviewField]
     public Sprite demanderIcon;
     public string demanderName;
+
     [TextArea]
     public string demandDescription;
 
+    [VerticalGroup("Enum group")]
     [EnumToggleButtons]
-    [GUIColor(1, 0f, 0f)]
+    [GUIColor(1, 1, .7f)]
     public SupplyType supplyType;
+
+    [VerticalGroup("Enum group")]
     [EnumToggleButtons]
-    [GUIColor(1f, 1f, 0f)]
+    [GUIColor(1f, .1f, .5f)]
     public CurrencyType currencyType;
+
     public int baseSupplyDemandAmount;
     public int baseRewardAmount;
 

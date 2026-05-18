@@ -1,68 +1,44 @@
 ﻿using System;
 using UnityEngine;
-using DG.Tweening;
 using UnityEditor.ShaderGraph.Internal;
 using Sirenix.OdinInspector;
 
-public class Supply : MonoBehaviour, IInteractable, ICollectible
+public class Supply : MonoBehaviour, IInteractable
 {
     [AssetsOnly]
     [SerializeField] private SupplySO supplyData;
-
+    [SerializeField] private float collectSpeed = 5f;
     public SupplySO SupplyData => supplyData;
     public string InteractableName => "Supply";
+    public bool IsCollecting { get; private set; }
+    public float CollectTimer { get; set; }
+    public Vector3 InitialScale { get; private set; }
 
     private Rigidbody _rb;
-
-    private Vector3 _targetPos;
-    private Vector3 _startPos;
-
-    private bool _isCollecting;
-    private float _collectDuration = 0.3f;
-    private float _collectTimer;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
 
+        InitialScale = transform.localScale;
+
     }
-
-    private void Update()
-    {
-        if (!_isCollecting) return;
-        MoveTowardsTarget();
-    }
-    private void MoveTowardsTarget()
-    {
-        _collectTimer += Time.deltaTime;
-
-        float t = _collectTimer / _collectDuration;
-        t = Mathf.SmoothStep(0, 1, t);
-
-
-        transform.position = Vector3.Lerp(_startPos, _targetPos, t);
-
-        if (t >= 1f)
-        {
-            CompleteCollect();
-        }
-    }
-    private void CompleteCollect()
+    public void CompleteCollect()
     {
         EventManager<Supply>.TriggerEvent(EventType.OnSupplyCollected, this);
 
-        _isCollecting = false;
-
         Destroy(gameObject);
     }
-    public void Collect(Vector3 targetPosition)
+    public void Collect()
     {
-        _targetPos = targetPosition;
-        _startPos = transform.position;
+        if(IsCollecting) return;
 
-        _collectTimer = 0f;
-        _isCollecting = true;
-    }
+        IsCollecting = true;
+
+        _rb.useGravity = false;
+        _rb.isKinematic = true;
+
+        CollectTimer = 0f;    }
     public void Interact()
     {
     }

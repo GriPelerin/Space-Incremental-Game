@@ -27,14 +27,16 @@ public class ResourceManager : MonoBehaviour
     {
         EventManager<Demand>.Unsubscribe(EventType.OnDemandCompleted, AddCurrency);
     }
-    public void AddSupply(Supply supply, int amount)
+    public void AddSupply(SupplyType supplyType)
     {
-        if (!_supplyCounts.ContainsKey(supply.SupplyData.supplyType))
+        if (!_supplyCounts.ContainsKey(supplyType))
         {
-            _supplyCounts[supply.SupplyData.supplyType] = 0;
+            _supplyCounts[supplyType] = 0;
         }
 
-        _supplyCounts[supply.SupplyData.supplyType] += amount;
+        _supplyCounts[supplyType]++;
+
+        EventManager<SupplyType>.TriggerEvent(EventType.OnSupplyAdded, supplyType);
     }
     public void AddCurrency(Demand demand)
     {

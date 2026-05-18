@@ -7,7 +7,7 @@ public class DemandUIItem : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI demandDescriptionText;
     [SerializeField] private TextMeshProUGUI rewardAmountText;
-    [SerializeField] private TextMeshProUGUI rewardProgressText;
+    [SerializeField] private TextMeshProUGUI supplyProgressText;
 
     [SerializeField] private Button claimButton;
 
@@ -17,6 +17,7 @@ public class DemandUIItem : MonoBehaviour
     {
         UpdateUI();
     }
+
     public void Initialize(Demand demand)
     {
         claimButton.interactable = false;

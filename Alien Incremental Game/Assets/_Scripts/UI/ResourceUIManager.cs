@@ -10,12 +10,19 @@ public class ResourceUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cleanMoneyText;
     [SerializeField] private TextMeshProUGUI dirtyMoneyText;
 
-    [Header("Supply UI")]
+    [Header("Supply Text")]
     [SerializeField] private TextMeshProUGUI foodText;
     [SerializeField] private TextMeshProUGUI gunText;
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI shieldText;
     [SerializeField] private TextMeshProUGUI medicalText;
+
+    [Header("Supply")]
+    [SerializeField] private GameObject foodSupply;
+    [SerializeField] private GameObject gunSupply;
+    [SerializeField] private GameObject ammoSupply;
+    [SerializeField] private GameObject shieldSupply;
+    [SerializeField] private GameObject medicalSupply;
 
     private void OnEnable()
     {
