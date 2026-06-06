@@ -29,4 +29,9 @@ public static class Helpers
 
         return value.ToString();
     }
+
+    public static int GetSupplyTypeAmount()
+    {
+        return System.Enum.GetValues(typeof(SupplyType)).Length;
+    }
 }

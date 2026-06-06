@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
 
     public bool LeftMouseInput { get; private set; }
     public bool RightMouseInput { get; private set; }
-
+    public bool MiddleMouseInput { get; private set; }
 
     private void Update()
     {
@@ -30,6 +30,7 @@ public class InputManager : MonoBehaviour
 
         LeftMouseInput = Input.GetKeyDown(KeyCode.Mouse0);
         RightMouseInput = Input.GetKey(KeyCode.Mouse1);
+        MiddleMouseInput = Input.GetKeyDown(KeyCode.Mouse2);
 
     }
 }

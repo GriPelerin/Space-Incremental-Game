@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db1b0861cf5fb1a4db4ac66440db70a7, type: 3}
-  m_Name: Food Supply
+  m_Name: Gun Supply
   m_EditorClassIdentifier: 
-  supplyPrefab: {fileID: 7143136572403355724, guid: 1851caea651b1fb418d85e4e8444762f, type: 3}
-  supplyType: 0
-  supplyName: Food Supply
+  supplyPrefab: {fileID: 7663106547209922369, guid: fdb3c181ff97a0c478e44140987b36fb, type: 3}
+  supplyType: 1
+  supplyName: Gun Supply

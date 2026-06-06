@@ -7,7 +7,6 @@ public class Supply : MonoBehaviour, IInteractable
 {
     [AssetsOnly]
     [SerializeField] private SupplySO supplyData;
-    [SerializeField] private float collectSpeed = 5f;
     public SupplySO SupplyData => supplyData;
     public string InteractableName => "Supply";
     public bool IsCollecting { get; private set; }
@@ -42,6 +41,4 @@ public class Supply : MonoBehaviour, IInteractable
     public void Interact()
     {
     }
-
-
 }
